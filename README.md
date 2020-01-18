@@ -97,7 +97,7 @@ Finally, I created a script, namely [execution.py](execution.py), that combines 
 
 This script first calls the [data_preparation.py](data_preparation.py) and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded I specifically use: 
 * a learning rate of 0.05
-* a 3-layer network with layer dimensions (9,7,7,1) (remember that the input layer is excluded from the counting of the number of the layers)
+* a 3-layer network with layer dimensions (9, 7, 7, 1) (remember that the input layer is excluded from the counting of the number of the layers)
 
 It then creates an instance of the NeuralNetwork class of the [neural_network.py](neural_network.py), runs the gradient_descent method for a number of iterations (passed to the gradient_descent method) and evaluates the performance of the resulting network. The gradient_descent method prints the average loss (over all the examples) every 1000 iterations.
 
@@ -140,17 +140,17 @@ Here is the script `execution.py`:
 ## Performance Results
 
 We present a few results of my program. 
-For the following we used the `np.random.seed(1)`, so that the results are reproducable. 
+For the following we used the `np.random.seed(1)` (in the execution.py), so that the results are reproducable. 
 
-* learning_rate = 0.05, layer_dimensions = (9,7,7,1), iterations = 40000
+* learning_rate = 0.05, layer_dimensions = (9, 7, 7, 1), iterations = 40000
     * Accuracy on the training set: 1 
     * Accuracy of on the validation set: 0.989
    
-* learning_rate = 0.06, layer_dimensions = (9,14,1), iterations = 60000
+* learning_rate = 0.06, layer_dimensions = (9, 14, 1), iterations = 60000
     * Accuracy on the training set: 0.996
     * Accuracy of on the validation set: 0.989
     
-* learning_rate = 0.06, layer_dimensions = (9,5,5,5,1), iterations = 15000
+* learning_rate = 0.06, layer_dimensions = (9, 5, 5, 5, 1), iterations = 15000
     * Accuracy on the training set: 0.978
     * Accuracy of on the validation set: 0.994
     
