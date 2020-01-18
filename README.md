@@ -24,10 +24,12 @@ For the sake of illustration, I trained and evaluated the performance of my netw
 
 ## Preparation of the data
 
-I downloaded the Breast Cancer Wisconsin (Diagnostic) Data Set from <https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)>. More specifically, from 
+We downloaded the Breast Cancer Wisconsin (Diagnostic) Data Set from <https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)>. More specifically, from 
 <https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/> we downloaded the second file named "breast-cancer-wisconsin.data". We then converted it to a csv file, by renaming it as "breast-cancer-wisconsin.csv", so that our code can read it as a csv file. Then we created a script, namely `data_preparation.py`, used for the preparation of the data. 
 
 In this script, first we do some technical processing (excluding some instances with missing features and changing the values of classification in the data -2 and 4- to match standard values -0 and 1- used in binary classification in machine learning). Then we normalize the data by employing the min-max normalization. Finally, we split the data set into a training set and a validation set. 
+
+The script `data_preparation.py`:
 
     def data_processing():
         """Manipulation of Breast Cancer Wisconsin (Diagnostic) Data Set.
