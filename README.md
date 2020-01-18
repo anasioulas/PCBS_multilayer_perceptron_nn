@@ -135,10 +135,6 @@ Here is the script `execution.py`:
     acc_val = nn.evaluate(x_val,y_val)
     print("Accuracy on the validation set is: " + str(acc_val))
 
-    #Now, the validation set.
-    acc_val = nn.evaluate(x_val,y_val)
-    print("Accuracy on the validation set is: " + str(acc_val))
-
 ## Performance Results
 
 We present a few results of my program. 
