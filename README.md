@@ -17,8 +17,6 @@ I created three scripts, namely [data_preparation.py](data_preparation.py), [neu
     - [Execution script](#execution-script)
     - [Performance Results](#performance-results)
     - [Technical note](#technical-note)
-
-    
     - [Previous & Gained Experience](#previous-&-gained-experience)
 
 <!-- markdown-toc end -->
