@@ -1,16 +1,21 @@
-Two-layer perceptron neural network from scratch
+Multilayer perceptron neural network from scratch
 ===========================
 
-The goal of my project was to create a multilayer (two layers specifically) perceptron neural network from scratch, i.e. without using the standard deep learning libraries of Python like keras or pytorch.
+The goal of my project was to create a multilayer perceptron neural network from scratch, i.e. without using the standard deep learning libraries of Python like keras or pytorch.
+More specifically, I restricted myself to using only numpy for the construction of the neural network. 
 
-More specifically, I restricted myself to using only numpy for the construction of the neural network. For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition applied only to the construction of then neural network.
+For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition applied only to the construction of then neural network.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Two-layer perceptron neural network from scratch](#two-layer-perceptron-neural-network-from-scratch)
+- [Multilayer perceptron neural network from scratch](#multilayer-perceptron-neural-network-from-scratch)
     - [Preparation of the data](#preparation-of-the-data)
     - [The neural network](#the-neural-network)
+    - [Performance Results](#performance-results)
+    - [Technical note](#technical-note)
+
+    
     - [Previous & Gained Experience](#previous-&-gained-experience)
 
 <!-- markdown-toc end -->
@@ -22,8 +27,6 @@ I downloaded the Breast Cancer Wisconsin (Diagnostic) Data Set from <https://arc
 <https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/> we downloaded the second file named "breast-cancer-wisconsin.data". We then converted it to a csv file, by renaming it as "breast-cancer-wisconsin.csv", so that our code can read it as a csv file. Then we created a script, namely `data_preparation.py`, used for the preparation of the data. 
 
 In this script, first we do some technical processing (excluding some instances with missing features and changing the values of classification in the data -2 and 4- to match standard values -0 and 1- used in binary classification in machine learning). Then we normalize the data by employing the min-max normalization. Finally, we split the data set into a training set and a validation set. 
-
-THE CODE IS MISSING HERE
 
     def data_processing():
         """Manipulation of Breast Cancer Wisconsin (Diagnostic) Data Set.
@@ -75,9 +78,7 @@ The script that constructs, trains and evaluates the neural network, namely [neu
 
 We used an object-oriented programming approach. Our script implements all the standard functionalities of such a neural network, like gradient descent (which incorporates forward and backward propagation). 
 
-CHANGE MAYBE Although large parts of this script can used for other etc
-
-Since our data set concerns a binary classification problem, we used the standard `cross-entropy loss` function during the training phase.
+Some of the choices we made were optimized for the specific data set. For example, since our data set concerns a binary classification problem, we used the standard `cross-entropy loss` function during the training phase. However, most of the code can be used for other data sets with very few (if any at all) modifications. 
 
 Also, we used the `Rectified Linear Unit (ReLU)` as the activation function for the hidden layers (in our specific example, we have only one intermediate layer) and the `sigmoid` function as the activation function for the output layer.
 
@@ -89,9 +90,35 @@ Finally, in order to classify the instances and eventually evaluate the performa
 
 Finally, I created a script, namely `execution.py`, that combines the two previous scripts. 
 
-This script first calls the `data_preparation.py` and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. Specifically, we use a learning rate of 0.05 and layer dimensions of (9, 15, 1). It then creates an instance of the NeuralNetwork class of the `neural_network.py`, runs the gradient_descend method and evaluates the performance of the resulting network. 
+This script first calls the `data_preparation.py` and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded we specifically use: 
+* a learning rate of 0.05
+* 3-layer network with layer dimensions (9,7,7,1) (remember that the input layer is excluded from the counting of the number of the layers)
 
-If we run this script with `np.random.seed(1)`, we get an accuracy of on the training set and an accuracy of on the validation set.
+It then creates an instance of the NeuralNetwork class of the `neural_network.py`, runs the gradient_descent method for 65000 iterations and evaluates the performance of the resulting network. The gradient_descent method prints the average loss (over all the examples) every 1000 iterations.
+
+
+
+## Performance Results
+
+We present a few results of our program. 
+For the following we used the `np.random.seed(1)`, so that the results are reproducable. 
+
+* learning_rate = 0.05, layer_dimensions = (9,7,7,1), iterations = 40000
+    *Accuracy on the training set: 1 
+    *Accuracy of on the validation set: 0.989
+   
+* learning_rate = 0.06, layer_dimensions = (9,14,1), iterations = 60000
+    *Accuracy on the training set: 0.996
+    *Accuracy of on the validation set: 0.989
+    
+* learning_rate = 0.06, layer_dimensions = (9,5,5,5,1), iterations = 15000
+    *Accuracy on the training set: 0.978
+    *Accuracy of on the validation set: 0.994
+    
+
+## Technical note
+
+We should mention that the use of the sigmoid function combined with the cross-entropy loss function creates somes issues with specific set of hyperparameters and usually after a big number of iterations. The problem is created by the fact that sigmoid gives outputs close to 0 or 1 which in turn, for example, might lead to log(0) in the computation of the loss. There are similar examples with division by a number very close to zero. There are ways to handle such issues. For instance, we can check when this is the case and add a very small epsilon, so that the log function (or the division) does not explode to infinity. However, the network works perfectly for many set of parameters and gives almost perfect accuracies -for this specific data set. In any case, handling such issues is beyond the scope of this project.
 
 
 ## Previous & Gained Experience
