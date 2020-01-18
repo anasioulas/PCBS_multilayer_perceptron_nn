@@ -10,11 +10,8 @@ More specifically, I restricted myself to using only numpy for the construction 
 
 - [Two-layer perceptron neural network from scratch](#two-layer-perceptron-neural-network-from-scratch)
     - [Preparation of the data](#preparation-of-the-data)
-        - [Words](#words)
-        - [Pseudowords](#pseudowords)
     - [The neural network](#the-neural-network)
-    - [Experiment](#experiment)
-    - [CONCLUSION](#conclusion)
+    - [Previous & Gained Experience](#previous-&-gained-experience)
 
 <!-- markdown-toc end -->
 
