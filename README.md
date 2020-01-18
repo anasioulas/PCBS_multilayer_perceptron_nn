@@ -12,6 +12,7 @@ For the sake of illustration, I trained and evaluated the performance of my netw
 - [Multilayer perceptron neural network from scratch](#multilayer-perceptron-neural-network-from-scratch)
     - [Preparation of the data](#preparation-of-the-data)
     - [The neural network](#the-neural-network)
+    - [Execution script](#execution-script)
     - [Performance Results](#performance-results)
     - [Technical note](#technical-note)
 
