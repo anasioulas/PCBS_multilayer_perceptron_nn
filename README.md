@@ -3,7 +3,7 @@ Two-layer perceptron neural network from scratch
 
 The goal of my project was to create a multilayer (two layers specifically) perceptron neural network from scratch, i.e. without using the standard deep learning libraries of Python like keras or pytorch.
 
-More specifically, I restricted myself to using only numpy for the construction of the neural network. For the sake of illustration, I trained and evaluated the performance my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition applied only to the construction of then neural network.
+More specifically, I restricted myself to using only numpy for the construction of the neural network. For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition applied only to the construction of then neural network.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
@@ -21,9 +21,52 @@ More specifically, I restricted myself to using only numpy for the construction 
 I downloaded the Breast Cancer Wisconsin (Diagnostic) Data Set from <https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)>. More specifically, from 
 <https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/> we downloaded the second file named "breast-cancer-wisconsin.data". We then converted it to a csv file, by renaming it as "breast-cancer-wisconsin.csv", so that our code can read it as a csv file. Then we created a script, namely `data_preparation.py`, used for the preparation of the data. 
 
+In this script, first we do some technical processing (excluding some instances with missing features and changing the values of classification in the data -2 and 4- to match standard values -0 and 1- used in binary classification in machine learning). Then we normalize the data by employing the min-max normalization. Finally, we split the data set into a training set and a validation set. 
+
 THE CODE IS MISSING HERE
 
+def data_processing():
+    """Manipulation of Breast Cancer Wisconsin (Diagnostic) Data Set.
 
+    Initially, 699 instances (patients) with 9 features each.
+    In the initial data set, a tumor is classified as benign (corresponding to number 2 at the last column)
+    or malignant (corresponding to number 4 at the last column).
+
+    Returns normalized training and validation sets.
+    """
+
+    from sklearn import preprocessing
+    import pandas as pd
+
+    #Read the file containing the data.
+    df = pd.read_csv('wisconsin-cancer-dataset.csv',header=None)
+
+    #Process the data.
+
+    #There are some missing data in column 6. We exclude these rows.
+    #There are 683 remaining rows with all the features included.
+    df = df[~df[6].isin(['?'])]
+
+    #In the data, last column (i.e. 10) is 2 for benign and 4 for malignant.
+    #Change it to be 0 for benign and 1 for malignant.
+    df.iloc[:,10].replace(2, 0,inplace=True)
+    df.iloc[:,10].replace(4, 1,inplace=True)
+
+    #Data normalization.
+    names = df.columns[1:10]
+    scaler = preprocessing.MinMaxScaler()
+    scaled_df = scaler.fit_transform(df.iloc[:, 1:10])
+    scaled_df = pd.DataFrame(scaled_df, columns=names)
+
+    #Split data set into training and validation sets.
+    #Training set (first 500 instances).
+    x_train=scaled_df.iloc[0:500,:].values.transpose()
+    y_train=df.iloc[0:500,10:].values.transpose()
+    #Validation set.
+    x_val=scaled_df.iloc[501:683,:].values.transpose()
+    y_val=df.iloc[501:683,10:].values.transpose()
+
+    return x_train, y_train, x_val, y_val
 
 
 ## The neural network
@@ -42,6 +85,13 @@ Since we used a small data set, we did not use mini-batches, but instead we run 
 
 Finally, in order to classify the instances and eventually evaluate the performance of our neural network, we used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0.  
 
+## Execution script
+
+Finally, I created a script, namely `execution.py`, that combines the two previous scripts. 
+
+This script first calls the `data_preparation.py` and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. Specifically, we use a learning rate of 0.05 and layer dimensions of (9, 15, 1). It then creates an instance of the NeuralNetwork class of the `neural_network.py`, runs the gradient_descend method and evaluates the performance of the resulting network. 
+
+If we run this script with `np.random.seed(1)`, we get an accuracy of on the training set and an accuracy of on the validation set.
 
 
 ## Previous & Gained Experience
