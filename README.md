@@ -6,7 +6,7 @@ More specifically, I restricted myself to using only numpy for the construction 
 
 For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition applied only to the construction of then neural network.
 
-We created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the execution.py, which calls the other two. 
+I created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the `execution.py`, which calls the other two. 
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
@@ -26,10 +26,10 @@ We created three scripts, namely [data_preparation.py](data_preparation.py), [ne
 
 ## Preparation of the data
 
-We downloaded the Breast Cancer Wisconsin (Diagnostic) Data Set from <https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)>. More specifically, from 
-<https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/> we downloaded the second file named "breast-cancer-wisconsin.data". We then converted it to a csv file, by renaming it as "breast-cancer-wisconsin.csv", so that our code can read it as a csv file. Then we created a script, namely `data_preparation.py`, used for the preparation of the data. 
+I downloaded the Breast Cancer Wisconsin (Diagnostic) Data Set from <https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)>. More specifically, from 
+<https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/> I downloaded the second file named "breast-cancer-wisconsin.data". I then converted it to a csv file, by renaming it as "breast-cancer-wisconsin.csv", so that my code can read it as a csv file. Then I created a script, namely `data_preparation.py`, used for the preparation of the data. 
 
-In this script, first we do some technical processing (excluding some instances with missing features and changing the values of classification in the data -2 and 4- to match standard values -0 and 1- used in binary classification in machine learning). Then we normalize the data by employing the min-max normalization. Finally, we split the data set into a training set and a validation set. 
+In this script, first I do some technical processing (excluding some instances with missing features and changing the values of classification in the data -2 and 4- to match standard values -0 and 1- used in binary classification in machine learning). Then I normalize the data by employing the min-max normalization. Finally, I split the data set into a training set and a validation set. 
 
 The script `data_preparation.py`:
 
@@ -81,21 +81,21 @@ The script `data_preparation.py`:
 
 The script that constructs, trains and evaluates the neural network, namely [neural_network.py](neural_network.py), uses only numpy, as mentioned above. 
 
-We used an object-oriented programming approach. Our script implements all the standard functionalities of such a neural network, like `gradient descent` (which incorporates forward and `backward propagation`). 
+I used an object-oriented programming approach. My script implements all the standard functionalities of such a neural network, like `gradient descent` (which incorporates forward and `backward propagation`). 
 
-Some of the choices we made were based on the specific data set. For example, since our data set concerns a binary classification problem, we used the standard `cross-entropy loss` function during the training phase. Yet, most of the code can be used for other data sets with very few (if any at all) modifications. 
+Some of the choices I made were based on the specific data set. For example, since the data set concerns a binary classification problem, I used the standard `cross-entropy loss` function during the training phase. Yet, most of the code can be used for other data sets with very few (if any at all) modifications. 
 
-Also, we used the `Rectified Linear Unit (ReLU)` as the activation function for the hidden layers and the `sigmoid` function as the activation function for the output layer.
+Also, I used the `Rectified Linear Unit (ReLU)` as the activation function for the hidden layers and the `sigmoid` function as the activation function for the output layer.
 
-Since we used a small data set, we did not use mini-batches, but instead we run forward and backward propagation on the whole training set (`batch gradient descent`).
+Since I used a small data set, I did not use mini-batches, but instead I run forward and backward propagation on the whole training set (`batch gradient descent`).
 
-Finally, in order to classify the instances and eventually evaluate the performance of our neural network, we used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0 -we remind that the sigmoid function gives values in (0,1).  
+Finally, in order to classify the instances and eventually evaluate the performance of my neural network, I used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0 -I remind that the sigmoid function gives values in (0,1).  
 
 ## Execution script
 
 Finally, I created a script, namely [execution.py](execution.py), that combines the two previous scripts. 
 
-This script first calls the [data_preparation.py](data_preparation.py) and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded we specifically use: 
+This script first calls the [data_preparation.py](data_preparation.py) and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded I specifically use: 
 * a learning rate of 0.05
 * a 3-layer network with layer dimensions (9,7,7,1) (remember that the input layer is excluded from the counting of the number of the layers)
 
@@ -139,7 +139,7 @@ Here is the script `execution.py`:
 
 ## Performance Results
 
-We present a few results of our program. 
+We present a few results of my program. 
 For the following we used the `np.random.seed(1)`, so that the results are reproducable. 
 
 * learning_rate = 0.05, layer_dimensions = (9,7,7,1), iterations = 40000
@@ -157,7 +157,7 @@ For the following we used the `np.random.seed(1)`, so that the results are repro
 
 ## Technical note
 
-We should mention that the use of the sigmoid function combined with the cross-entropy loss function creates somes issues with specific set of hyperparameters and usually after a big number of iterations. The problem is created by the fact that sigmoid gives outputs close to 0 or 1 which in turn, for example, might lead to log(0) in the computation of the loss. There are similar issues with division by a number very close to zero. There are ways to handle such issues. For instance, we can check when this is the case and add a very small epsilon, so that the log function (or the division) does not explode to infinity. Still, the network works perfectly for many set of parameters and gives almost perfect accuracies -for this specific data set. In any case, handling such issues is beyond the scope of this project.
+I should mention that the use of the sigmoid function combined with the cross-entropy loss function creates somes issues with specific set of hyperparameters and usually after a big number of iterations. The problem is created by the fact that sigmoid gives outputs close to 0 or 1 which in turn, for example, might lead to log(0) in the computation of the loss. There are similar issues with division by a number very close to zero. There are ways to handle such issues. For instance, we can check when this is the case and add a very small epsilon, so that the log function (or the division) does not explode to infinity. Still, the network works perfectly for many set of parameters and gives almost perfect accuracies -for this specific data set. In any case, handling such issues is beyond the scope of this project.
 
 
 ## Previous & Gained Experience
