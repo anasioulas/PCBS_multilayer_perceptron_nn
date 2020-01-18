@@ -79,15 +79,15 @@ The script `data_preparation.py`:
 
 The script that constructs, trains and evaluates the neural network, namely [neural_network.py](neural_network.py), uses only numpy, as mentioned above. 
 
-We used an object-oriented programming approach. Our script implements all the standard functionalities of such a neural network, like gradient descent (which incorporates forward and backward propagation). 
+We used an object-oriented programming approach. Our script implements all the standard functionalities of such a neural network, like `gradient descent` (which incorporates forward and `backward propagation`). 
 
-Some of the choices we made were optimized for the specific data set. For example, since our data set concerns a binary classification problem, we used the standard `cross-entropy loss` function during the training phase. However, most of the code can be used for other data sets with very few (if any at all) modifications. 
+Some of the choices we made were based on the specific data set. For example, since our data set concerns a binary classification problem, we used the standard `cross-entropy loss` function during the training phase. Yet, most of the code can be used for other data sets with very few (if any at all) modifications. 
 
-Also, we used the `Rectified Linear Unit (ReLU)` as the activation function for the hidden layers (in our specific example, we have only one intermediate layer) and the `sigmoid` function as the activation function for the output layer.
+Also, we used the `Rectified Linear Unit (ReLU)` as the activation function for the hidden layers and the `sigmoid` function as the activation function for the output layer.
 
 Since we used a small data set, we did not use mini-batches, but instead we run forward and backward propagation on the whole training set (`batch gradient descent`).
 
-Finally, in order to classify the instances and eventually evaluate the performance of our neural network, we used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0.  
+Finally, in order to classify the instances and eventually evaluate the performance of our neural network, we used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0 -we remind that the sigmoid function gives values in (0,1).  
 
 ## Execution script
 
