@@ -6,6 +6,8 @@ More specifically, I restricted myself to using only numpy for the construction 
 
 For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition applied only to the construction of then neural network.
 
+We created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the execution.py, which calls the other two. 
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
@@ -91,13 +93,15 @@ Finally, in order to classify the instances and eventually evaluate the performa
 
 ## Execution script
 
-Finally, I created a script, namely `execution.py`, that combines the two previous scripts. 
+Finally, I created a script, namely [execution.py](execution.py), that combines the two previous scripts. 
 
-This script first calls the `data_preparation.py` and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded we specifically use: 
+This script first calls the [data_preparation.py](data_preparation.py) and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded we specifically use: 
 * a learning rate of 0.05
-* 3-layer network with layer dimensions (9,7,7,1) (remember that the input layer is excluded from the counting of the number of the layers)
+* a 3-layer network with layer dimensions (9,7,7,1) (remember that the input layer is excluded from the counting of the number of the layers)
 
-It then creates an instance of the NeuralNetwork class of the `neural_network.py`, runs the gradient_descent method for a number of iterations (passed to the gradient_descent method) and evaluates the performance of the resulting network. The gradient_descent method prints the average loss (over all the examples) every 1000 iterations.
+It then creates an instance of the NeuralNetwork class of the [neural_network.py](neural_network.py), runs the gradient_descent method for a number of iterations (passed to the gradient_descent method) and evaluates the performance of the resulting network. The gradient_descent method prints the average loss (over all the examples) every 1000 iterations.
+
+Here is the script `execution.py`:
 
     from data_preparation import data_processing
     from neural_network import NeuralNetwork
