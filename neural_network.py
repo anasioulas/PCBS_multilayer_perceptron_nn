@@ -66,9 +66,6 @@ class NeuralNetwork(object):
     def backward_propagation(self):
         '''Executes the back propagation algorithm and updates the weights and the biases.'''
 
-        #We will use the following notation in the below comments, for better readability.
-        # n_e is the number of examples, n_0 the number of neurons in the input layer
-        # (n_1, n_2 for hidden and output respectively)
         cost_derivative_a ={}
         cost_derivative_z = {}
         cost_derivative_w = {}
@@ -81,28 +78,25 @@ class NeuralNetwork(object):
         index = len(self.dim)-1
 
         #Block_1
-        #1xn_e matrix, one for each example
+        #1xn_e matrix, one for each example, where n_e is the number of examples.
         cost_derivative_a[index] = -np.divide(self.y, self.y_predicted)+np.divide(1-self.y, 1-self.y_predicted)
 
         #1xn_e matrix, one for each example
         cost_derivative_z[index] = cost_derivative_a[index] * sigmoid_derivative(self.preactivations[index])
 
-        #n_1-array
-        #Remember that activations is (n_1xn_e) matrix.
-        #Each element in the n_1-array is the average over all n_e examples.
+        #n_sl -array, where n_sl is the number of the neurons in the second to last layer (last hidden layer)
+        #Remember that activations for this layer is (n_sl x n_e) matrix.
+        #Each element in the n_sl -array is the average over all n_e examples.
         cost_derivative_w[index] = np.dot(cost_derivative_z[index],self.activations[index-1].T )/self.y.shape[1]
 
         cost_derivative_b[index] = np.sum(cost_derivative_z[index])/self.y.shape[1]
 
         #Block_2
         for i in range(len(self.dim)-2,0,-1):
-            #(n_1xn_e) matrix.
             cost_derivative_a[i] = np.dot(self.weights[i].T, cost_derivative_z[i+1])
 
-            #point-wise multiplication of two (n_1xn_e) matrices.
             cost_derivative_z[i] = cost_derivative_a[i]*relu_derivative(self.preactivations[i])
 
-            #(n_1 x n_0) matrix
             cost_derivative_w[i] = np.dot(cost_derivative_z[i],self.activations[i-1].T )/self.y.shape[1]
 
             cost_derivative_b[i] = np.sum(cost_derivative_z[i],axis=1)/self.y.shape[1]
