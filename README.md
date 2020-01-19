@@ -4,9 +4,9 @@ Multilayer perceptron neural network from scratch
 The goal of my project was to create a multilayer perceptron neural network from scratch, i.e. without using the standard deep learning libraries of Python like keras or pytorch.
 More specifically, I restricted myself to using only numpy for the construction of the neural network. 
 
-For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from sratch" condition (in the sense of using only numpy) applied only to the construction of then neural network.
+For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from scratch" condition (in the sense of using only numpy) applied only to the construction of then neural network.
 
-I created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the `execution.py`, which calls the other two. 
+I created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the `execution.py`, which calls the other two. The hyperparameters of the neural network can be changed at the execution.py script. Please, read the [Technical note](#technical-note) section, before you make any changes. The three scripts as well as the data set file should be put in the same folder.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
