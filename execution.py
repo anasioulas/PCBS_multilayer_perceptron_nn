@@ -9,8 +9,8 @@ np.random.seed(1)
 x_train, y_train, x_val, y_val = data_processing()
 
 #We set the dimension of the layers to be 9, 7, 7 and 1 for the input, first,second and third (output)
-# layer respectively.
-# One can change the number and the dimension of the layers as one wishes.
+#layer respectively.
+#One can change the number and the dimension of the layers as one wishes.
 layer_dims  = [9, 7, 7, 1]
 
 #We set the learning rate to be 0.05.
