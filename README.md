@@ -97,6 +97,8 @@ This script first calls the [data_preparation.py](data_preparation.py) and recei
 * a learning rate of 0.05
 * a 3-layer network with layer dimensions (9, 7, 7, 1) (remember that the input layer is excluded from the counting of the number of the layers)
 
+As mentioned in the beginning, the user can change some of these parameters. Comments in the script specify which ones are allowed to be changed. 
+
 It then creates an instance of the NeuralNetwork class of the [neural_network.py](neural_network.py), runs the gradient_descent method for a number of iterations (passed to the gradient_descent method) and evaluates the performance of the resulting network. The gradient_descent method prints the average loss (over all the examples) every 1000 iterations.
 
 Here is the script `execution.py`:
@@ -111,11 +113,13 @@ Here is the script `execution.py`:
     #and we get the training and validation sets (inputs and outputs).
     x_train, y_train, x_val, y_val = data_processing()
 
-    #We set the dimension of the layers to be 9, 7, 7 and 1 for the
-    #input, first,second and third (output) layer respectively.
+    #We set the dimension of the layers to be 9, 7, 7 and 1 for the input, first,second and third (output)
+    #layer respectively.
+    #One can change the number and the dimension of the layers as one wishes.
     layer_dims  = [9, 7, 7, 1]
 
-    #We set the learning rate to be 0.05
+    #We set the learning rate to be 0.05.
+    #One can change the learning rate.
     learning_rate = 0.05
 
 
@@ -123,6 +127,7 @@ Here is the script `execution.py`:
     nn = NeuralNetwork(x_train, y_train, layer_dims, learning_rate)
 
     #We execute gradient descend algorith on this nn for 40000 iterations.
+    #One can change the number of iterations.
     nn.gradient_descent(40000)
 
     #Evaluate the performance of the neural network on the training and validation set.
