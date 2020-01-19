@@ -8,11 +8,13 @@ np.random.seed(1)
 #and we get the training and validation sets (inputs and outputs).
 x_train, y_train, x_val, y_val = data_processing()
 
-#We set the dimension of the layers to be 9, 7, 7 and 1 for the
-#input, first,second and third (output) layer respectively.
+#We set the dimension of the layers to be 9, 7, 7 and 1 for the input, first,second and third (output)
+# layer respectively.
+# One can change the number and the dimension of the layers as one wishes.
 layer_dims  = [9, 7, 7, 1]
 
-#We set the learning rate to be 0.05
+#We set the learning rate to be 0.05.
+#One can change the learning rate.
 learning_rate = 0.05
 
 
@@ -20,6 +22,7 @@ learning_rate = 0.05
 nn = NeuralNetwork(x_train, y_train, layer_dims, learning_rate)
 
 #We execute gradient descend algorith on this nn for 40000 iterations.
+#One can change the number of iterations.
 nn.gradient_descent(40000)
 
 #Evaluate the performance of the neural network on the training and validation set.
