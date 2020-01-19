@@ -83,6 +83,8 @@ I used an object-oriented programming approach. My script implements all the sta
 
 Some of the choices I made were based on the specific data set. For example, since the data set concerns a binary classification problem, I used the standard `cross-entropy loss` function during the training phase. Yet, most of the code can be used for other data sets with very few (if any at all) modifications. 
 
+In the backward_propagation method I mention the dimensions of some variables for the sake of readability. These dimensions are under the assumption that the output layer has only one neuron. 
+
 Also, I used the `Rectified Linear Unit (ReLU)` as the activation function for the hidden layers and the `sigmoid` function as the activation function for the output layer.
 
 Since I used a small data set, I did not use mini-batches, but instead I run forward and backward propagation on the whole training set (`batch gradient descent`).
