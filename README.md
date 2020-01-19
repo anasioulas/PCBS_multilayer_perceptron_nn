@@ -6,7 +6,7 @@ More specifically, I restricted myself to using only numpy for the construction 
 
 For the sake of illustration, I trained and evaluated the performance of my network on a specific data set (more details about that below). I used pandas and sklearn to prepare my data -the "from scratch" condition (in the sense of using only numpy) applied only to the construction of then neural network.
 
-I created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the `execution.py`, which calls the other two. The hyperparameters of the neural network can be changed at the execution.py script. Please, read the [Technical note](#technical-note) section, before you make any changes. The three scripts as well as the data set file should be put in the same folder.
+I created three scripts, namely [data_preparation.py](data_preparation.py), [neural_network.py](neural_network.py), and [execution.py](execution.py). The main script is the `execution.py`, which calls the other two. The hyperparameters of the neural network can be changed at the execution.py script -comments at this script mention explicitly which parameters can be changed. Please, read the [Technical note](#technical-note) section, before you make any changes. The three scripts as well as the data set file should be put in the same folder.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
@@ -87,11 +87,11 @@ Also, I used the `Rectified Linear Unit (ReLU)` as the activation function for t
 
 Since I used a small data set, I did not use mini-batches, but instead I run forward and backward propagation on the whole training set (`batch gradient descent`).
 
-Finally, in order to classify the instances and eventually evaluate the performance of my neural network, I used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0 -I remind that the sigmoid function gives values in (0,1).  
+Finally, in order to classify the instances and eventually evaluate the performance of my neural network, I used a `threshold` of 0.5, which means that instances with output value greater than or equal to 0.5 are classified as 1 and instances with output value less than 0.5 are classified as 0 -recall that the sigmoid function gives values in (0,1).  
 
 ## Execution script
 
-Finally, I created a script, namely [execution.py](execution.py), that combines the two previous scripts. 
+Finally, I created a script, namely [execution.py](execution.py), which is the script the user should run. This script (execution.py) calls the two previous scripts. 
 
 This script first calls the [data_preparation.py](data_preparation.py) and receives the training and the validation sets. Then it sets some of the hyperparameters of the network to be instantiated. In the version uploaded I specifically use: 
 * a learning rate of 0.05
